@@ -1,0 +1,56 @@
+package it.epicode.be;
+
+import java.util.Scanner;
+
+public class Helloworld {
+
+public static void main (String[] args)
+		{
+		// Stampa a console  la frase
+		System.out.println("This is my first Epicode Java Project!");
+		System.out.println(moltiplicazione(10,20));
+		System.out.println(conc("KEKW",20));
+		System.out.println(asdrubale());
+		System.out.println(perimetroRettangolo(10,20));
+		System.out.println(pariDispari(10));
+		}
+		
+		public static int moltiplicazione(int x, int y) {
+			int result = x * y;
+			return result;
+		}
+		
+		public static String conc(String x, int y) {
+			String result = x + " " + y;
+			return result;
+		}
+		
+		//esercizio 3
+		
+		public static String asdrubale(){
+			Scanner sc = new Scanner(System.in);
+			System.out.print("inserisci il tuo nome: ");
+			String nome = sc.nextLine();
+			System.out.print("inserisci il tuo cognome: ");
+			String cognome = sc.nextLine();
+			System.out.print("inserisci la tua citta': ");
+			String citta = sc.nextLine();
+			return ("Ciao " + nome + " " + cognome + " da " + citta);
+		}
+		
+		//esercizio 4
+		
+		public static float perimetroRettangolo (float x , float y) {
+			float result = (x + y) * 2;
+			return result;
+		}
+		
+		public static int pariDispari (int x) {
+			if (x % 2 == 0) {
+				return 0;
+			}
+			else return 1;
+		}
+		
+		
+}
