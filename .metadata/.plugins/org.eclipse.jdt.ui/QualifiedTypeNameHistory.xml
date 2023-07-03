@@ -4,5 +4,9 @@
     <fullyQualifiedTypeName name="Dipendente"/>
     <fullyQualifiedTypeName name="interfaces.volume"/>
     <fullyQualifiedTypeName name="interfaces.luminosita"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
 </qualifiedTypeNameHistroy>

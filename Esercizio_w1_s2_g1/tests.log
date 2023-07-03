@@ -1,0 +1,32 @@
+16:06:04.678 [main] ERROR esercizio_1.esercizio_1 - logError
+16:07:46.633 [main] ERROR esercizio_1.esercizio_1 - dsad
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at esercizio_1.esercizio_1.main(esercizio_1.java:33)
+16:08:31.216 [main] ERROR esercizio_1.esercizio_1 - ERRORE
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at esercizio_1.esercizio_1.main(esercizio_1.java:33)
+16:08:44.990 [main] ERROR esercizio_1.esercizio_1 - ERRORE
+esercizio_1.MyException: inserisci un numero tra 1 e 10: 
+	at esercizio_1.esercizio_1.main(esercizio_1.java:35)
+16:08:51.474 [main] ERROR esercizio_1.esercizio_1 - ERRORE
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at esercizio_1.esercizio_1.main(esercizio_1.java:33)
+16:10:32.118 [main] ERROR esercizio_1.esercizio_1 - ERRORE
+java.util.InputMismatchException: null
+	at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+	at java.base/java.util.Scanner.next(Scanner.java:1594)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+	at esercizio_1.esercizio_1.main(esercizio_1.java:34)
