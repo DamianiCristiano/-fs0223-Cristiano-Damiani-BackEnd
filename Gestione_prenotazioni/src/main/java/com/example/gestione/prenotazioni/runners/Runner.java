@@ -47,6 +47,8 @@ public class Runner implements CommandLineRunner {
 
 		Prenotazione pr1 = prenotazioneService.createPrenotazione(me, p1, LocalDate.of(2024, 10, 20));
 		prenotazioneService.creaPrenotazione(pr1);
+		Prenotazione pr2 = prenotazioneService.createPrenotazione(me, p1, LocalDate.of(2024, 10, 20));
+		prenotazioneService.creaPrenotazione(pr2);
 
 		postazioneService.trovaPostazioneP(Tipo.PRIVATO, "Palermo");
 	}

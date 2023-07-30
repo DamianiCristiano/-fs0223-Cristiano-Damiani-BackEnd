@@ -39,12 +39,12 @@ public class PostazioneService {
 
 	public void updatePostazione(Postazione p) {
 		postazioneRepo.save(p);
-		System.out.println("la postazione con id: " + p.getId() + "e' stata modificata");
+		System.out.println("la postazione con id: " + p.getId() + " e' stata modificata");
 	}
 
 	public void removePostazione(Postazione p) {
 		postazioneRepo.delete(p);
-		System.out.println("la postazione con id: " + p.getId() + "e' stata rimossa");
+		System.out.println("la postazione con id: " + p.getId() + " e' stata rimossa");
 	}
 
 	public Postazione trovaPostazione(Integer id) {

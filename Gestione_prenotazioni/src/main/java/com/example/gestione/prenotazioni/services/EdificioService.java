@@ -29,12 +29,12 @@ public class EdificioService {
 
 	public void updateEdificio(Edificio e) {
 		edificioRepo.save(e);
-		System.out.println("l'edficio" + e.getNome() + "e' stato modificato");
+		System.out.println("l'edficio " + e.getNome() + "e' stato modificato");
 	}
 
 	public void removeEdifcio(Edificio e) {
 		edificioRepo.delete(e);
-		System.out.println("l'edficio" + e.getNome() + "e' stato rimosso");
+		System.out.println("l'edficio " + e.getNome() + "e' stato rimosso");
 	}
 
 	public Edificio trovaEdificio(String nome) {
