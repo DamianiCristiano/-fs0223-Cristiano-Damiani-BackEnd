@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Cristiano Damiani\eclipse-workspace\Gestione_prenotazioni"/>
 			<item value="C:\Users\Cristiano Damiani\eclipse-workspace\Esercizio s3_g3"/>
 			<item value="C:\Users\Cristiano Damiani\eclipse-workspace\Esercizio s2_g4"/>
 			<item value="B:\desktop1\corso\corso\cartella JAVA\Back-end_JAVA_-FS0223\introSpring\introSpring"/>

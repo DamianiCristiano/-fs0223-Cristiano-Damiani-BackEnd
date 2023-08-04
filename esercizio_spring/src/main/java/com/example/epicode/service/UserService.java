@@ -26,7 +26,6 @@ public class UserService {
 		User u = userProvider.getObject().builder().name(f.name().firstName()).surname(f.name().lastName())
 				.username(f.name().username()).nTelefono(f.phoneNumber().cellPhone()).build();
 		u.setUsername(u.getName() + "." + u.getSurname());
-
 		userRepo.save(u);
 	}
 
