@@ -53,10 +53,17 @@ public class AuthServiceImpl implements AuthService {
     public JWTAuthResponse login(LoginDto loginDto) {
     	
     	JWTAuthResponse jwt = new JWTAuthResponse();
-        
-    	Optional<User> username = userRepository.findByUsername(loginDto.getUsername());
     	
-    	User_role x = userRepository.findUserRolesIdsByUserId(username.get().getId());
+    	 Optional<User> username = userRepository.findByUsername(loginDto.getUsername());
+    	 List<Object[]> rolesData = userRepository.findUserRolesIdsByUserId(username.get().getId());
+        
+    	
+    	User_role x = new User_role();
+    	  if (!rolesData.isEmpty()) {
+    	        Object[] data = rolesData.get(0);
+    	        x.setId_user((Long) data[0]);
+    	        x.setRole_user((Long) data[1]);
+    	    }
     	
     	Authentication authentication = authenticationManager.authenticate(
         		new UsernamePasswordAuthenticationToken(
@@ -72,7 +79,6 @@ public class AuthServiceImpl implements AuthService {
         jwt.setId_role(x.getRole_user());
         jwt.setId_user(x.getId_user());
         
-        System.out.println(jwt);
         return jwt;
         
     }

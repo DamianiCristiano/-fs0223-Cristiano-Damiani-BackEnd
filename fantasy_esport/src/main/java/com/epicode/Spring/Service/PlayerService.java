@@ -75,6 +75,13 @@ public class PlayerService {
 		}
 	}
 	
-	
+	public Player createPlayer(Player player) {
+		Player p = new Player();
+		p.setNickname(player.getNickname());
+		p.setTeam(player.getTeam());
+		p.setNationality(player.getNationality());
+		p.setRole(player.getRole());
+        return playerRepo.save(player);
+    }
 	
 }

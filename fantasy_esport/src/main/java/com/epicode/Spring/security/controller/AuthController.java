@@ -40,7 +40,6 @@ public class AuthController {
         jwtAuthResponse.setId_role(jwt.getId_role());
         jwtAuthResponse.setId_user(jwt.getId_user());
         
-        
         return ResponseEntity.ok(jwtAuthResponse);
     }
 

@@ -37,6 +37,7 @@ public class Player {
 	
 	private String nationality;
 	
+
 	private String role;
 	
 
