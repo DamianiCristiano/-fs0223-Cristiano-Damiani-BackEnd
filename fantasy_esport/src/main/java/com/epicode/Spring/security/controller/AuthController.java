@@ -32,12 +32,15 @@ public class AuthController {
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto){
            	
-    	String token = authService.login(loginDto);
+    	JWTAuthResponse jwt = authService.login(loginDto);
 
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setUsername(loginDto.getUsername());
-        jwtAuthResponse.setAccessToken(token);
-
+        jwtAuthResponse.setAccessToken(jwt.getAccessToken());
+        jwtAuthResponse.setId_role(jwt.getId_role());
+        jwtAuthResponse.setId_user(jwt.getId_user());
+        
+        
         return ResponseEntity.ok(jwtAuthResponse);
     }
 

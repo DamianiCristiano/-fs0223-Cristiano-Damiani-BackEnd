@@ -1,6 +1,8 @@
 package com.epicode.Spring.security.service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
@@ -11,10 +13,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.epicode.Spring.model.User_role;
 import com.epicode.Spring.security.entity.ERole;
 import com.epicode.Spring.security.entity.Role;
 import com.epicode.Spring.security.entity.User;
 import com.epicode.Spring.security.exception.MyAPIException;
+import com.epicode.Spring.security.payload.JWTAuthResponse;
 import com.epicode.Spring.security.payload.LoginDto;
 import com.epicode.Spring.security.payload.RegisterDto;
 import com.epicode.Spring.security.repository.RoleRepository;
@@ -46,8 +50,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String login(LoginDto loginDto) {
+    public JWTAuthResponse login(LoginDto loginDto) {
+    	
+    	JWTAuthResponse jwt = new JWTAuthResponse();
         
+    	Optional<User> username = userRepository.findByUsername(loginDto.getUsername());
+    	
+    	User_role x = userRepository.findUserRolesIdsByUserId(username.get().getId());
+    	
     	Authentication authentication = authenticationManager.authenticate(
         		new UsernamePasswordAuthenticationToken(
         				loginDto.getUsername(), loginDto.getPassword()
@@ -57,8 +67,14 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtTokenProvider.generateToken(authentication);
-        System.out.println(loginDto.getUsername());
-        return token;
+        
+        jwt.setAccessToken(token);
+        jwt.setId_role(x.getRole_user());
+        jwt.setId_user(x.getId_user());
+        
+        System.out.println(jwt);
+        return jwt;
+        
     }
 
     @Override
