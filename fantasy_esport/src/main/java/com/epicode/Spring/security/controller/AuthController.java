@@ -1,15 +1,21 @@
 package com.epicode.Spring.security.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.epicode.Spring.Service.PlayerService;
 import com.epicode.Spring.model.ExceptionError;
+import com.epicode.Spring.model.Player;
 import com.epicode.Spring.security.payload.JWTAuthResponse;
 import com.epicode.Spring.security.payload.LoginDto;
 import com.epicode.Spring.security.payload.RegisterDto;
@@ -22,6 +28,8 @@ import com.epicode.Spring.security.service.AuthService;
 public class AuthController {
 
     private AuthService authService;
+    @Autowired
+    private PlayerService playerService;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -53,6 +61,9 @@ public class AuthController {
         r.status = 1;
         return new ResponseEntity<>(r, HttpStatus.CREATED);
     }
+    
+    
+    
     
     
     

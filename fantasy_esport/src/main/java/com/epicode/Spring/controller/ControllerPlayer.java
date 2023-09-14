@@ -6,20 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.epicode.Spring.Service.PlayerService;
 import com.epicode.Spring.model.Player;
-import com.epicode.Spring.repository.PlayerRepository;
+import com.epicode.Spring.model.PlayerDto;
 
 @RestController
-@RequestMapping ("/api/players")
+@RequestMapping ("/api/auth/player")
+@CrossOrigin(origins = "**")
 public class ControllerPlayer {
 
 
@@ -74,11 +76,24 @@ public class ControllerPlayer {
 	    
 	    @PostMapping("/create")
 	    @CrossOrigin(origins = "http://localhost:4200")
-	    public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+	    public ResponseEntity<Player> createPlayer(@RequestBody PlayerDto player) {
 	        Player createdPlayer = playerService.createPlayer(player);
 	        System.out.println(player);
 	        return new ResponseEntity<>(createdPlayer, HttpStatus.CREATED);
 	    }
 	    
+	    @DeleteMapping("/delete/{id}")
+	    @CrossOrigin(origins = "http://localhost:4200")
+	    public ResponseEntity<Void> deletePlayer(@PathVariable("id") Long id) {
+	        playerService.deletePlayer(id);
+	        return ResponseEntity.noContent().build();
+	    }
+	    
+	    @PutMapping("/edit/{id}")
+	    @CrossOrigin(origins = "http://localhost:4200")
+	    public ResponseEntity<Void> editPlayer(@PathVariable("id") Long id, @RequestBody Player player) {
+	        playerService.editPlayer(player);
+	        return ResponseEntity.noContent().build();
+	    }
 }
 	

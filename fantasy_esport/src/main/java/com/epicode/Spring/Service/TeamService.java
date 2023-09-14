@@ -62,5 +62,37 @@ public class TeamService {
 		}
 	}
 	
+	public Team createTeam(Team team) {
+		Team t = new Team();
+		t.setName(team.getName());
+		t.setNationality(team.getNationality());
+		t.setLeague(team.getLeague());
+        return teamRepo.save(team);
+	}
+	
+	public Team editTeam(Team team) {
+        // Verifica se il giocatore esiste nel database
+		try {
+        Optional<Team> existingTeam = teamRepo.findById(team.getId());
+        System.out.println(existingTeam);
+        
+            Team updatedTeam = existingTeam.get();
+            updatedTeam.setId(team.getId());
+            updatedTeam.setName(team.getName());
+            updatedTeam.setNationality(team.getNationality());
+            updatedTeam.setLeague(team.getLeague());
+
+            // Salva le modifiche nel database
+            return teamRepo.save(updatedTeam);
+		} catch (EntityNotFoundException e) {
+			 System.err.println("Eccezione EntityNotFoundException gestita: " + e.getMessage());
+		}
+		return new Team();
+       
+    }
+	
+	public void deleteTeam(Long id){
+		teamRepo.deleteById(id);
+	}
 	
 }

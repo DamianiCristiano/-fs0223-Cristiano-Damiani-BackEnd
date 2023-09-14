@@ -1,5 +1,9 @@
 package com.epicode.Spring.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.epicode.Spring.repository.TeamRepository;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Table (name = "Players")
 public class Player {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPlayer;
@@ -28,7 +33,7 @@ public class Player {
 	private String nickname;
 	
 	@ManyToOne
-	@JoinColumn(name = "team_id")
+	@JoinColumn(name = "team_id",referencedColumnName = "id")
 	private Team team;
 	
 	@ManyToOne

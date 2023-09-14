@@ -29,6 +29,7 @@ public class Team {
 	private String name;
 	
 	@OneToMany(mappedBy = "team")
+	// @Column(nullable = true)
     private List<Player> teamPlayers;
 	
 	private String nationality;
