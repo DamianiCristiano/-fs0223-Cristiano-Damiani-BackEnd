@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.epicode.Spring.model.Player;
 import com.epicode.Spring.model.PlayerDto;
+import com.epicode.Spring.model.Team;
 import com.epicode.Spring.repository.PlayerRepository;
 import com.epicode.Spring.repository.TeamRepository;
 
@@ -78,7 +79,14 @@ public class PlayerService {
 	public Player createPlayer(PlayerDto player) {
 		Player p = new Player();
 		p.setNickname(player.getNickname());
-		p.setTeam(teamRepo.findById(player.getTeam_id()).get());
+		  Optional<Team> teamOptional = teamRepo.findById(player.getTeamId());
+		    if (teamOptional.isPresent()) {
+		        Team team = teamOptional.get();
+		        p.setTeam(team);
+		    } else {
+		        // Gestione dell'errore se l'ID del team non esiste nel database
+		        throw new EntityNotFoundException("Team with ID " + player.getTeamId() + " not found");
+		    }
 		p.setNationality(player.getNationality());
 		p.setRole(player.getRole());
         return playerRepo.save(p);
@@ -88,25 +96,45 @@ public class PlayerService {
 		playerRepo.deleteById(id);
 	}
 	
+	
+	
 	public Player editPlayer(Player player) {
-        // Verifica se il giocatore esiste nel database
-		try {
-        Optional<Player> existingPlayer = playerRepo.findById(player.getIdPlayer());
-        System.out.println(existingPlayer);
-        
-            Player updatedPlayer = existingPlayer.get();
-            updatedPlayer.setIdPlayer(player.getIdPlayer());
-            updatedPlayer.setNickname(player.getNickname());
-            updatedPlayer.setNationality(player.getNationality());
-            updatedPlayer.setRole(player.getRole());
-            updatedPlayer.setTeam(player.getTeam());
+	    try {
+	        // Verifica se il giocatore esiste nel database
+	        Optional<Player> existingPlayer = playerRepo.findById(player.getIdPlayer());
+	        
+	        if (existingPlayer.isPresent()) {
+	            Player updatedPlayer = existingPlayer.get();
+	            updatedPlayer.setNickname(player.getNickname());
+	            updatedPlayer.setNationality(player.getNationality());
+	            updatedPlayer.setRole(player.getRole());
 
-            // Salva le modifiche nel database
-            return playerRepo.save(updatedPlayer);
-		} catch (EntityNotFoundException e) {
-			 System.err.println("Eccezione EntityNotFoundException gestita: " + e.getMessage());
-		}
-		return new Player();
-       
-    }
+	            // Verifica se il team nel giocatore non è nullo
+	            if (player.getTeam() != null) {
+	                // Ottieni l'ID del team dal giocatore e cerca il team nel repository
+	                Long teamId = player.getTeam().getId();
+	                Optional<Team> teamOptional = teamRepo.findById(teamId);
+
+	                if (teamOptional.isPresent()) {
+	                    updatedPlayer.setTeam(teamOptional.get());
+	                } else {
+	                    // Gestione dell'errore se l'ID del team non esiste nel database
+	                    throw new EntityNotFoundException("Team with ID " + teamId + " not found");
+	                }
+	            } else {
+	                updatedPlayer.setTeam(null); // Imposta il team del giocatore a null se il team nel giocatore è nullo
+	            }
+
+	            // Salva le modifiche nel database
+	            return playerRepo.save(updatedPlayer);
+	        } else {
+	            // Il giocatore con l'ID specificato non esiste nel database
+	            throw new EntityNotFoundException("Player with ID " + player.getIdPlayer() + " not found");
+	        }
+	    } catch (EntityNotFoundException e) {
+	        System.err.println("Eccezione EntityNotFoundException gestita: " + e.getMessage());
+	        // Restituisci un valore significativo anche in caso di eccezione
+	        return null; // o un'altra rappresentazione significativa dell'errore
+	    }
+	}
 }

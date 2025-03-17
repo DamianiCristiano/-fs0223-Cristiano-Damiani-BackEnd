@@ -17,7 +17,7 @@ public interface MatchRepository extends CrudRepository<Match, Long> {
 	@Query("SELECT m FROM Match m WHERE m.dayOfGames = ?1")
 	List<Match> findMatchBydayOfGames(Integer dayOfGames);
 	
-	@Query("SELECT m FROM Match m WHERE m.teamR = ?1 OR m.teamB = ?1")
-	List<Match> findMatchByTeam(Team team); 
+	@Query("SELECT m FROM Match m WHERE m.teamRId = ?1 OR m.teamBId = ?1")
+	List<Match> findMatchByTeam(Long teamId);
 	
 }

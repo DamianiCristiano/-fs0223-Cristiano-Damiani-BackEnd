@@ -1,5 +1,6 @@
 package com.epicode.Spring.model;
 
+import org.hibernate.annotations.ManyToAny;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.epicode.Spring.repository.TeamRepository;
@@ -10,8 +11,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,9 +35,10 @@ public class Player {
 	@Column(unique = true)
 	private String nickname;
 	
+
 	@ManyToOne
-	@JoinColumn(name = "team_id",referencedColumnName = "id")
-	private Team team;
+    @JoinColumn(name = "team_id")
+    private Team team;
 	
 	@ManyToOne
 	@JoinColumn(name = "roster_id")

@@ -11,7 +11,7 @@ public class PlayerDto {
 
 	private String nickname;
 	private String nationality;
-	private Long team_id;
+	private Long teamId;
 	private String role;
 	
 }
